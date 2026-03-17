@@ -1,0 +1,23 @@
+# ROMs - do not commit copyrighted game data
+*.gba
+*.zip
+*.7z
+*.rar
+
+# Build artifacts
+build/
+*.o
+*.obj
+*.exe
+*.elf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
