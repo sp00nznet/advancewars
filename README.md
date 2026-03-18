@@ -60,10 +60,12 @@ This game shipped in September 2001 and immediately got overshadowed by world ev
 | ARM instruction translation | **Done** -- Full ARM7TDMI instruction set |
 | Thumb instruction translation | **Done** -- All 19 Thumb formats, 397K instructions translated |
 | C code generation | **Done** -- 1.13M lines of C generated from ROM |
-| Memory bus + MMIO dispatch | In progress -- runtime header defined |
-| PPU runtime (via libmgba) | Not started |
-| APU runtime (via libmgba) | Not started |
-| DMA / Timers / IRQ runtime | Not started |
+| Memory bus + MMIO dispatch | **Done** -- Full GBA memory map with correct mirroring |
+| PPU runtime (SDL2) | **Done** -- Mode 0/3/4 rendering, sprites, keyboard input |
+| Binary compiles & links | **Done** -- 4.9MB native x64 exe, 0 errors |
+| Game executes | **Done** -- Boots, initializes, runs main loop with SDL2 window |
+| APU runtime | Not started |
+| DMA / Timers / IRQ runtime | Basic stubs -- VBlank via SWI handled |
 | Campaign playable | Not started |
 | Multiplayer functional | Not started |
 | Save system working | Not started |
