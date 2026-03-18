@@ -56,10 +56,11 @@ This game shipped in September 2001 and immediately got overshadowed by world ev
 
 | Milestone | Status |
 |-----------|--------|
-| ROM analysis & disassembly | Not started |
-| ARM instruction translation | Not started |
-| Thumb instruction translation | Not started |
-| Memory bus + MMIO dispatch | Not started |
+| ROM analysis & disassembly | **Done** -- 6,300 functions, 51,260 basic blocks, 19% code coverage |
+| ARM instruction translation | **Done** -- Full ARM7TDMI instruction set |
+| Thumb instruction translation | **Done** -- All 19 Thumb formats, 397K instructions translated |
+| C code generation | **Done** -- 1.13M lines of C generated from ROM |
+| Memory bus + MMIO dispatch | In progress -- runtime header defined |
 | PPU runtime (via libmgba) | Not started |
 | APU runtime (via libmgba) | Not started |
 | DMA / Timers / IRQ runtime | Not started |
