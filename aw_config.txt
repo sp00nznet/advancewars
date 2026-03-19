@@ -1,0 +1,35 @@
+# Advance Wars (USA, Rev 1) - Recompilation Configuration
+# Game Code: AWRE
+# ROM SHA1: (provide your own legally obtained ROM)
+#
+# Extra entry points: function pointer targets discovered at runtime
+# that the static analysis can't find (called via callback tables).
+# Format: hex address (Thumb addresses have bit 0 cleared here)
+
+# Init/startup callbacks
+0x0801A784
+0x0801A78A
+0x0801AFD0
+0x0801AFFE
+0x0801B01C
+0x0801B3CE
+0x0801ADAC
+
+# VBlank task dispatcher callbacks
+0x08079716
+0x0807981E
+0x08079A74
+0x08079F92
+0x0807A0E0
+0x0807AE10
+
+# Main loop entry
+0x080000E4
+0x08038734
+
+# Graphics/display callbacks
+0x08015C0E
+0x08015C1A
+0x08015C26
+0x0803EC5C
+0x0803EC70
