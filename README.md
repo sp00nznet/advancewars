@@ -15,9 +15,9 @@
 
 ## Proof of Life
 
-![Advance Wars Recompiled](proofoflife.png)
+![Advance Wars Recompiled](title2.png)
 
-*The Advance Wars world map during the title screen fade-in. ARM7TDMI machine code statically recompiled to C, compiled with MSVC to an 8MB native x64 Windows executable, rendered by mGBA's PPU through SDL2.*
+*Advance Wars title screen running natively on Windows x64. The complete intro plays, menus work, and training missions are playable. ARM7TDMI machine code statically recompiled to C, compiled with MSVC, rendered pixel-perfect by mGBA's PPU through SDL2 at 60fps.*
 
 ## What Is This?
 
