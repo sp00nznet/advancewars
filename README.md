@@ -68,9 +68,13 @@ Because Andy, Max, Sami, and the rest of the crew deserve better than being trap
 | Binary compiles & links | **Done** -- 8MB native x64, 0 errors |
 | Game boots & initializes | **Done** -- mGBA CPU handles IWRAM init code |
 | **Title screen renders** | **Done** -- First GBA game recompiled! |
-| Full gameplay | In progress -- needs main loop handoff |
-| Audio | Not started |
-| Save system | Detected (Flash), not wired up |
+| **Full gameplay** | **Done** -- Intro, menus, training missions playable |
+| **Function interception** | **Done** -- Native C execution via ARMRunLoop hook, 0 failures |
+| **ImGui menu** | **Done** -- File/Config/Graphics/Audio/Controller |
+| **Save file** | **Done** -- Flash auto-detected, persistent across sessions |
+| **Configurable controls** | **Done** -- Click-to-rebind keyboard + gamepad |
+| Audio | In progress -- SDL callback wired, needs resampler fix |
+| Save states | In progress -- File > Save/Load State slots |
 
 ## Related Projects
 
@@ -106,4 +110,4 @@ This project does not distribute any copyrighted game data. You must provide you
 
 *"It's your turn, and you've got nothing to lose."*
 
-*Built with Claude Code. From zero to first GBA recomp in 48 hours.*
+*Built with Claude Code. From zero to first GBA recomp in 48 hours. Native function interception and full gameplay in 96.*
