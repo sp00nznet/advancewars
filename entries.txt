@@ -1,10 +1,9 @@
-# Advance Wars (USA, Rev 1) - Recompilation Configuration
-# Game Code: AWRE
-# ROM SHA1: (provide your own legally obtained ROM)
+# Advance Wars (USA, Rev 1), game code AWRE
+# ROM SHA1 15053499d5b3f49128a941d7f2d84876f5424d0c
 #
-# Extra entry points: function pointer targets discovered at runtime
-# that the static analysis can't find (called via callback tables).
-# Format: hex address (Thumb addresses have bit 0 cleared here)
+# Extra entry points for gbarecomp (passed with --entries): callback targets
+# the analyzer can't find on its own, found from interpreter fallbacks at
+# runtime. One hex address per line, Thumb bit cleared.
 
 # Init/startup callbacks
 0x0801A784

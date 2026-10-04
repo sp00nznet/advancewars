@@ -1,0 +1,3 @@
+[submodule "ext/gbarecomp"]
+	path = ext/gbarecomp
+	url = https://github.com/sp00nznet/gbarecomp

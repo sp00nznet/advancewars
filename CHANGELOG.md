@@ -1,0 +1,32 @@
+# Changelog
+
+All notable changes to this project. Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
+versions follow SemVer once the first one is tagged.
+
+## [Unreleased]
+
+### Added
+- `Setup.cmd` quick start and `build.cmd`: tool checks, toolkit fetch, ROM
+  discovery and verification, build, launcher.
+- gbarecomp as a submodule at `ext/gbarecomp` (needs gbarecomp#1-#3: Flash
+  backup, control-flow recovery, headless and validation tooling).
+- `tools/title.txt` button script and `conformance_baseline.txt`.
+- LICENSE (MIT), ROADMAP, `docs/architecture.md`, screenshots of the
+  recompiled intro.
+
+### Changed
+- The build is fully static: the libmgba-backed hybrid (`build.sh`) is gone.
+  The recompiled build plays the whole attract intro and reaches the title
+  screen; menus aren't reached yet (see ROADMAP).
+- `aw_config.txt` is now `entries.txt`, passed to the toolkit with `--entries`
+  (the toolkit no longer hard-codes Advance Wars addresses).
+- README rewritten to the current state.
+
+### Removed
+- `build.sh` (hybrid build) and the hybrid-era screenshots.
+
+## 2026-03 (untagged)
+
+- First boot of the recompiled code under a libmgba-backed runtime: title
+  screen, intro, menus and training missions, with recompiled functions
+  intercepted from mGBA's run loop.

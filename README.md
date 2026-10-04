@@ -1,113 +1,130 @@
 # Advance Wars Recompiled
 
-**The first GBA game to be statically recompiled to native code.**
+A static recompilation of **Advance Wars** (GBA, 2001) to a native Windows
+executable, built from your own ROM with the
+[gbarecomp](https://github.com/sp00nznet/gbarecomp) toolkit. The game's ARM and
+Thumb code is translated to C and compiled; no emulator runs underneath.
+
+Follows the recomp house style shared with snesrecomp, lynxrecomp, xboxrecomp,
+ps3recomp and pcrecomp: the toolkit lives in its own repo, generated code is
+never committed, and every build runs headless.
+
+## Status
+
+**Alpha. Not playable yet.**
+
+| Milestone | State |
+|---|---|
+| Recompiles and builds | Yes: 7381 functions, all ROM code native, about a minute to compile |
+| Boots, loads the save (Flash) | Yes |
+| Attract intro | Plays in full: map, CO cut-ins, battle scenes, logo |
+| Title screen | Reached; EWRAM, palette, VRAM and OAM match mGBA byte for byte (frame 615) |
+| Menus, Field Training, campaign | No: after Start the title's actors take a different path and the game returns to the attract loop |
+| Audio | No (the toolkit has no mixer yet) |
+| Blend, window and affine effects | No (PPU work in the toolkit) |
+| Conformance (lockstep validation) | 154/158 functions agree; the 4 failures are known interpreter limitations |
+
+An earlier version of this repo (March 2026) ran a hybrid: libmgba executed the
+CPU and recompiled functions were swapped in from its run loop. It reached the
+menus and training missions that way, but it wasn't a static recompilation and
+has been retired. See [CHANGELOG.md](CHANGELOG.md).
+
+## Screenshots
+
+From the recompiled build, captured with `--headless --screenshot`:
+
+![Intro map, Max's cut-in, the battle scene and the ADVANCE logo](docs/screenshots/intro.png)
+
+## Getting Started
+
+You need your own **Advance Wars (USA) (Rev 1)** ROM
+(SHA1 `15053499d5b3f49128a941d7f2d84876f5424d0c`). Nothing here downloads or
+bundles it.
+
+### Quick start
+
+1. Download this repo (Code > Download ZIP) and unzip it, or clone it.
+2. Double-click **`Setup.cmd`**. It checks for Visual Studio 2022 (C++), CMake,
+   git and SDL2, and offers to install what's missing (Visual Studio you install
+   yourself: it tells you which workload). It fetches the toolkit, finds your ROM
+   (beside the repo or in Downloads, `.gba` or `.zip`) or asks for its path,
+   builds, and makes a launcher. If a step fails it says what to do in one
+   sentence and keeps the details in `setup.log`; run it again and finished
+   steps are skipped.
+3. Double-click **`Advance Wars (recomp).cmd`**.
+
+### Step by step
+
+1. Prerequisites: Visual Studio 2022 or its Build Tools with *Desktop
+   development with C++*; CMake 3.16+; git; and SDL2 from vcpkg:
+   ```
+   git clone https://github.com/microsoft/vcpkg C:\vcpkg
+   C:\vcpkg\bootstrap-vcpkg.bat
+   C:\vcpkg\vcpkg install sdl2:x64-windows
+   ```
+   With vcpkg elsewhere, `set VCPKG_ROOT=<path>` before building.
+2. Clone with the toolkit:
+   ```
+   git clone --recursive https://github.com/sp00nznet/advancewars
+   cd advancewars
+   ```
+   (Already cloned without `--recursive`: `git submodule update --init`.)
+3. Put your ROM at `game\aw.gba`.
+4. Build:
+   ```
+   build.cmd
+   ```
+   It ends with `Built build\b\Release\AWRE.exe`. The generated C is in
+   `build\gen` and stays on your machine.
+5. Run:
+   ```
+   build\b\Release\AWRE.exe game\aw.gba
+   ```
+   Keys: arrows, Z = A, X = B, Enter = Start, Backspace = Select, A/S = L/R.
+
+Trip-ups: run `build.cmd` from a normal Command Prompt (it finds Visual Studio
+through CMake, so a Developer Prompt isn't needed); after installing CMake or
+git, open a new window so `PATH` picks them up.
+
+## Usage
+
+Headless runs (no window; work over RDP), recordings and screenshots use the
+toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbarecomp/blob/master/docs/headless.md)):
 
 ```
-    ___       __                              _       __
-   /   | ____/ /   ______ _____  ________   | |     / /___ ___________
-  / /| |/ __  / | / / __ `/ __ \/ ___/ _ \  | | /| / / __ `/ ___/ ___/
- / ___ / /_/ /| |/ / /_/ / / / / /__/  __/  | |/ |/ / /_/ / /  (__  )
-/_/  |_\__,_/ |___/\__,_/_/ /_/\___/\___/   |__/|__/\__,_/_/  /____/
-                    R E C O M P I L E D
+build\b\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
+build\b\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
+build\b\Release\AWRE.exe game\aw.gba --headless --input tools\title.txt --frames 1200
 ```
 
-> **Historic first.** On March 19, 2026, Advance Wars became the first Game Boy Advance game to be statically recompiled and rendered natively on a PC. Built from scratch in 48 hours using [gbarecomp](https://github.com/sp00nznet/gbarecomp) -- the first GBA static recompilation toolkit.
-
-## Proof of Life
-
-![Advance Wars Recompiled](title2.png)
-
-*Advance Wars title screen running natively on Windows x64. The complete intro plays, menus work, and training missions are playable. ARM7TDMI machine code statically recompiled to C, compiled with MSVC, rendered pixel-perfect by mGBA's PPU through SDL2 at 60fps.*
-
-## What Is This?
-
-This project takes the original **Advance Wars** (GBA, 2001) ROM and statically recompiles it into native code that runs on modern hardware -- no emulator required. The game's ARM7TDMI instructions are translated to C, compiled with a modern toolchain, and linked against [libmgba](https://github.com/mgba-emu/mgba) for pixel-perfect hardware emulation.
-
-The result? Advance Wars running natively on your PC.
-
-## Why?
-
-Because Andy, Max, Sami, and the rest of the crew deserve better than being trapped on a 20-year-old handheld. Because Intelligent Systems made something genuinely special and the world should be able to play it forever. Because static recompilation is one of the coolest preservation techniques in gaming and the GBA deserves the same love the N64 has been getting.
-
-**Advance Wars** is a masterclass in turn-based strategy:
-- Fog of war that actually creates tension
-- CO Powers that turn the tide of battle
-- A campaign that teaches you to think three turns ahead
-- Multiplayer that ruins friendships (in the best way)
-
-## How It Works
+Conformance (needs the ROM; prints a SKIP line without it):
 
 ```
-[Advance Wars ROM]
-        |
-        v
-[gbarecomp] -- Static recompiler (ARM7TDMI -> C)
-        |
-        v
-[6,289 C functions across 63 source files]
-        +
-[libmgba runtime] -- PPU, DMA, timers, interrupts
-        +
-[SDL2] -- Display, input
-        |
-        v
-[AWRE.exe] -- 8MB native Windows executable
+py -3 ext\gbarecomp\tools\conformance.py --exe build\b\Release\AWRE.exe --rom game\aw.gba ^
+   --baseline conformance_baseline.txt --input tools\title.txt --frames 760
+conformance: 154/158 functions agree (details: scratch\conformance.log)
 ```
 
-## Project Status
+## Building from source
 
-| Milestone | Status |
-|-----------|--------|
-| ROM analysis & disassembly | **Done** -- 6,289 functions, 57K+ basic blocks |
-| ARM instruction translation | **Done** -- Full ARM7TDMI instruction set |
-| Thumb instruction translation | **Done** -- All 19 Thumb formats |
-| C code generation | **Done** -- 1.1M lines across 63 files |
-| Memory bus (libmgba) | **Done** -- All GBA memory regions |
-| PPU rendering (libmgba) | **Done** -- All modes, sprites, effects |
-| DMA / Timers / IRQ (libmgba) | **Done** -- Accurate hardware emulation |
-| Binary compiles & links | **Done** -- 8MB native x64, 0 errors |
-| Game boots & initializes | **Done** -- mGBA CPU handles IWRAM init code |
-| **Title screen renders** | **Done** -- First GBA game recompiled! |
-| **Full gameplay** | **Done** -- Intro, menus, training missions playable |
-| **Function interception** | **Done** -- Native C execution via ARMRunLoop hook, 0 failures |
-| **ImGui menu** | **Done** -- File/Config/Graphics/Audio/Controller |
-| **Save file** | **Done** -- Flash auto-detected, persistent across sessions |
-| **Configurable controls** | **Done** -- Click-to-rebind keyboard + gamepad |
-| Audio | In progress -- SDL callback wired, needs resampler fix |
-| Save states | In progress -- File > Save/Load State slots |
+`build.cmd` is the whole build; see Step by step. Notes on the game's code,
+the save format and the addresses that matter are in
+[docs/architecture.md](docs/architecture.md).
 
-## Related Projects
+## Related projects
 
-### Recompilation
-- **[gbarecomp](https://github.com/sp00nznet/gbarecomp)** -- The recompilation toolchain that makes this possible. The first GBA static recompiler.
-- **[N64Recomp](https://github.com/N64Recomp/N64Recomp)** -- The pioneering N64 static recompiler. 9+ games ported. Major inspiration.
-- **[gb-recompiled](https://github.com/arcanite24/gb-recompiled)** -- Static recompiler for original Game Boy.
-
-### Advance Wars Community
-- **[ketsuban/advancewars](https://github.com/ketsuban/advancewars)** -- Advance Wars decompilation (byte-matching). Incredible reverse engineering work.
-- **[Eebit/aw2bhr](https://github.com/Eebit/aw2bhr)** -- Advance Wars 2: Black Hole Rising decompilation.
-
-### GBA Emulation & Tools
-- **[mGBA](https://github.com/mgba-emu/mgba)** -- The excellent GBA emulator whose `libmgba` core powers our hardware runtime.
-- **[GBATEK](https://problemkaputt.de/gbatek.htm)** -- The definitive GBA technical reference.
-- **[pret](https://pret.github.io/)** -- GBA decompilation community hub.
-- **[decomp.dev](https://decomp.dev/projects)** -- Track decompilation progress across all platforms.
-
-## Want to Help?
-
-This is a big, ambitious project and we'd love help from anyone who's passionate about:
-- **ARM reverse engineering** -- GBA uses ARM7TDMI with ARM/Thumb interworking
-- **Compiler/toolchain development** -- The recompiler is the heart of everything
-- **GBA hardware internals** -- PPU timing, DMA edge cases, audio mixing
-- **Advance Wars** -- If you love this game, you belong here
-- **Other GBA games** -- The toolkit is game-agnostic. Pick your favorite and try it!
+- [gbarecomp](https://github.com/sp00nznet/gbarecomp): the toolkit.
+- [ketsuban/advancewars](https://github.com/ketsuban/advancewars): the Advance Wars decompilation.
+- [mGBA](https://github.com/mgba-emu/mgba): the reference the build is checked against.
+- [GBATEK](https://problemkaputt.de/gbatek.htm): the GBA hardware reference.
 
 ## Legal
 
-This project does not distribute any copyrighted game data. You must provide your own legally obtained ROM. The recompilation tools and runtime are open source. The GBA hardware runtime is based on [mGBA](https://github.com/mgba-emu/mgba) (MPL-2.0).
+No game data is included or distributed: you supply your own ROM, and the C
+generated from it stays in the gitignored `build/` directory on your machine.
 
----
+## License
 
-*"It's your turn, and you've got nothing to lose."*
-
-*Built with Claude Code. From zero to first GBA recomp in 48 hours. Native function interception and full gameplay in 96.*
+MIT for the code in this repo, see [LICENSE](LICENSE). Advance Wars is a
+trademark of Nintendo and Intelligent Systems; this project is not affiliated
+with them.

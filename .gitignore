@@ -1,23 +1,42 @@
-# ROMs - do not commit copyrighted game data
+# Game data never committed (repo rules section 3): ROMs, archives, saves
 *.gba
 *.zip
 *.7z
 *.rar
+*.sav
+*.eep
+
+# Generated C from the ROM - the tool ships, the output doesn't
+build/
+gen/
+recomp_*/
+
+# Run output and scratch
+scratch/
+*.log
+*.mp4
+*.bmp
+aw_shots*/
+garble.png
+menucover.png
 
 # Build artifacts
-build/
 *.o
 *.obj
 *.exe
 *.elf
 
-# IDE
+# IDE / OS
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
 desktop.ini
+imgui.ini
+
+# Your ROM, and what Setup.cmd makes for you
+game/
+setup.log
+Advance Wars (recomp).cmd
