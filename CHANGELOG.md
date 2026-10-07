@@ -6,9 +6,11 @@ versions follow SemVer once the first one is tagged.
 ## [Unreleased]
 
 ### Added
-- `tools/field_training_battle.txt`: plays Field Training's Day 1 (both
-  infantry moved, turn ended), Olaf's turn, and Day 2's attack through the
-  battle scene, in step with mGBA. `docs/screenshots/field_training.png`.
+- `tools/field_training_win.txt`: plays Field Training to the win. Day 1
+  moves, Olaf's turns, Day 2's two attacks (one destroys an infantry), and
+  Day 3's finish, then Victory, the results screen (rank A), the save and
+  the next mission's briefing, in step with mGBA.
+  `docs/screenshots/field_training.png`, `field_training_win.png`.
 - `tools/field_training.txt`: button script from the intro through name entry
   and Nell's tutorial into the first Field Training battle.
 - Two entry points in `entries.txt` that only m4a's RAM mixer calls.
@@ -19,6 +21,13 @@ versions follow SemVer once the first one is tagged.
   (headless-only, gbarecomp#7), QA passes here and reports SKIP on the test VM.
 
 ### Changed
+- gbarecomp pinned at main after #17-#19. The results screen fell into the
+  wrong code after a block split (gbarecomp#17): bars drawn from garbage,
+  then a hang in the RAM sprite builder. Its "Victory!", labels and rank
+  needed affine sprites (#19). The BIOS affine SWIs also had the scale
+  inverted (#18).
+- Conformance baseline `138 138`: tails split from shared blocks now run
+  inline, so fewer separate functions are called in the 760-frame window.
 - gbarecomp pinned at main after #9-#15. Field Training play found and
   fixed: Thumb LDRH/LDRSB swapped in the translator (the move range covered
   the whole map, gbarecomp#12), calls into code already analyzed as part of

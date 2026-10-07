@@ -11,10 +11,10 @@ never committed, and every build runs headless.
 
 ## Status
 
-**Alpha.** The game runs through the menus into Field Training and plays
-it: moving units, ending the turn, the enemy's turn and the first battle all
-match mGBA turn for turn. A whole mission hasn't been played to the end yet,
-and there's no audio.
+**Alpha.** The game runs through the menus and plays Field Training to the
+win. Moves, the enemy's turns, every battle, the results screen (rank A) and
+the save all match mGBA turn for turn, and it goes on into the next mission's
+briefing. There's no audio yet.
 
 | Milestone | State |
 |---|---|
@@ -23,10 +23,10 @@ and there's no audio.
 | Attract intro | Plays in full: map, CO cut-ins, battle scenes, logo |
 | Title screen | Yes, with logo and PRESS START |
 | Menus, name entry, Nell's tutorial | Yes, screen for screen with mGBA (`tools/field_training.txt`) |
-| Field Training | Day 1 moves, Olaf's turn and Day 2's attack with its battle scene, in step with mGBA (`tools/field_training_battle.txt`); the rest of the mission is next |
+| Field Training | Played to Victory over three days, results screen and save, in step with mGBA (`tools/field_training_win.txt`) |
 | Sound driver (m4a) | Runs (music state advances as on hardware); no audio output yet |
-| Graphics | Per-scanline rendering, priorities, alpha/brightness effects, affine BGs, windows; missing mosaic, affine sprites |
-| Conformance (lockstep validation) | 151/151 functions agree |
+| Graphics | Per-scanline rendering, priorities, alpha/brightness effects, affine BGs and sprites, windows; missing mosaic |
+| Conformance (lockstep validation) | 138/138 functions agree |
 
 An earlier version of this repo (March 2026) ran a hybrid: libmgba executed the
 CPU and recompiled functions were swapped in from its run loop. It reached the
@@ -40,6 +40,8 @@ From the recompiled build, captured with `--headless --screenshot`:
 ![Title screen, Nell's welcome, the Field Training briefing and the first battle map](docs/screenshots/menus.png)
 
 ![Field Training: an infantry's move range, the Wait menu, the damage forecast and the battle scene](docs/screenshots/field_training.png)
+
+![Field Training won: the last battle, "Your mission is a success!", the results screen with rank A, and the next mission's briefing](docs/screenshots/field_training_win.png)
 
 ![Intro map, Max's cut-in, the battle scene and the ADVANCE logo](docs/screenshots/intro.png)
 
@@ -103,7 +105,7 @@ toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbareco
 build\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
 build\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
 build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training.txt --frames 8000 --screenshot map.bmp
-build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training_battle.txt --frames 16000 --screenshot battle.bmp
+build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training_win.txt --frames 26300 --screenshot victory.bmp
 ```
 
 Conformance (needs the ROM; prints a SKIP line without it):

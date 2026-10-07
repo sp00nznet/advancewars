@@ -2,16 +2,16 @@
 
 ## Next
 
-- **Finish Field Training**: `tools/field_training_battle.txt` plays to the
-  first battle on Day 2; carry it to the win, comparing with mGBA each turn.
-- **Campaign and save/load** through the in-game menus.
+- **Campaign and save/load**: script the next missions on from
+  `tools/field_training_win.txt`, and load the save it writes.
 - **RAM overlays in the toolkit**, which would retire the two m4a entries in
   `entries.txt` and run the sound mixer natively.
 - **Audio**, once the toolkit has a mixer.
-- **Rendering**: affine sprites and mosaic, from the toolkit's PPU work.
-- **Frame timing**: the build runs a frame or two behind mGBA in places
-  (approximate cycle counts), so text and slides land a frame later. Game
-  state stays in step.
+- **Rendering**: mosaic, from the toolkit's PPU work.
+- **Frame timing**: cycle counts are approximate, so the build runs a frame
+  or two behind mGBA in places, and about 60 frames ahead after heavy code
+  such as the end of Field Training's last battle. Game state stays in step;
+  scripts with a press every 90 frames still line up.
 - **CI**: build the toolkit and this repo's scripts on push; conformance
   reports SKIP there (no ROM).
 
