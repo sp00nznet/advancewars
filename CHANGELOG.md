@@ -6,6 +6,9 @@ versions follow SemVer once the first one is tagged.
 ## [Unreleased]
 
 ### Added
+- `tools/field_training_battle.txt`: plays Field Training's Day 1 (both
+  infantry moved, turn ended), Olaf's turn, and Day 2's attack through the
+  battle scene, in step with mGBA. `docs/screenshots/field_training.png`.
 - `tools/field_training.txt`: button script from the intro through name entry
   and Nell's tutorial into the first Field Training battle.
 - Two entry points in `entries.txt` that only m4a's RAM mixer calls.
@@ -16,6 +19,14 @@ versions follow SemVer once the first one is tagged.
   (headless-only, gbarecomp#7), QA passes here and reports SKIP on the test VM.
 
 ### Changed
+- gbarecomp pinned at main after #9-#15. Field Training play found and
+  fixed: Thumb LDRH/LDRSB swapped in the translator (the move range covered
+  the whole map, gbarecomp#12), calls into code already analyzed as part of
+  another function compiled to empty stubs (`_call_via_r3`, the map-icon
+  loader; #13), HBlank/VCount IRQs raised without their DISPSTAT enables
+  (junk at the bottom of the battle screen; #14), no nested interrupts (the
+  top text box never appeared; #15), plus PPU windows (#9) and HBlank timing
+  (#10).
 - `build.cmd` writes `gen/` and builds `build/Release/AWRE.exe`.
 - With gbarecomp#5 and #6 (sound driver, shared switch blocks, scanline
   renderer) the game gets past the title: menus, name entry, the tutorial

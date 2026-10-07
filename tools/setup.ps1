@@ -93,7 +93,7 @@ else {
   # A plain download (no .git, so no submodule): clone the toolkit and check
   # out the commit the submodule pins. Keep $ToolkitRef equal to that pin
   # (git -C ext\gbarecomp rev-parse HEAD) whenever the submodule moves.
-  $ToolkitRef = '5f587f505ff0b607d6311c3025f6b02db63c9b3b'
+  $ToolkitRef = '216e30ee6e9162d40dee2ff12ccf66d8e08919ba'
   Run "Cloning gbarecomp" @('git', 'clone', 'https://github.com/sp00nznet/gbarecomp', 'ext\gbarecomp')
   Run "Checking out the pinned toolkit" @('git', '-C', 'ext\gbarecomp', 'checkout', '-q', $ToolkitRef)
 }
