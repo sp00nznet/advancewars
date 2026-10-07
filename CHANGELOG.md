@@ -8,8 +8,8 @@ versions follow SemVer once the first one is tagged.
 ### Added
 - `Setup.cmd` quick start and `build.cmd`: tool checks, toolkit fetch, ROM
   discovery and verification, build, launcher.
-- gbarecomp as a submodule at `ext/gbarecomp` (needs gbarecomp#1-#3: Flash
-  backup, control-flow recovery, headless and validation tooling).
+- gbarecomp as a submodule at `ext/gbarecomp` (needs gbarecomp#1, #3, #4: license, Flash
+  backup, control-flow recovery and tooling).
 - `tools/title.txt` button script and `conformance_baseline.txt`.
 - LICENSE (MIT), ROADMAP, `docs/architecture.md`, screenshots of the
   recompiled intro.

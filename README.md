@@ -89,7 +89,7 @@ git, open a new window so `PATH` picks them up.
 ## Usage
 
 Headless runs (no window; work over RDP), recordings and screenshots use the
-toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbarecomp/blob/master/docs/headless.md)):
+toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbarecomp/blob/main/docs/headless.md)):
 
 ```
 build\b\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp

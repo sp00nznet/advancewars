@@ -28,7 +28,7 @@ toolkit's interpreter; everything in ROM is native.
 Before October 2026 this repo built a hybrid in which libmgba ran the CPU and
 recompiled functions were intercepted from its run loop. That was retired: the
 build is now fully static, with mGBA kept only as the reference
-([ext/gbarecomp/docs/conformance.md](https://github.com/sp00nznet/gbarecomp/blob/master/docs/conformance.md)).
+([ext/gbarecomp/docs/conformance.md](https://github.com/sp00nznet/gbarecomp/blob/main/docs/conformance.md)).
 
 # Game notes
 
