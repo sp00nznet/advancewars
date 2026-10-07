@@ -32,3 +32,8 @@
 0x08015C26
 0x0803EC5C
 0x0803EC70
+
+# Called only from m4a code running in IWRAM (SoundMainRAM): its BL targets
+# are relative to the RAM copy, so ROM analysis cannot see them
+0x08077D4A
+0x080794A4

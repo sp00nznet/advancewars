@@ -1,6 +1,6 @@
 # Button script (docs in ext/gbarecomp/docs/headless.md): "<frame> <keymask hex>".
-# Start during the intro, Start at the title, then A. On mGBA this reaches
-# Nell's "Welcome to Advance Wars!"; the recompiled build doesn't yet (ROADMAP).
+# Start during the intro, Start at the title, then A: reaches Nell's
+# "Welcome to Advance Wars!" (the conformance run uses this script).
 600 008
 606 000
 900 008

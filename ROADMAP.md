@@ -2,15 +2,14 @@
 
 ## Next
 
-- **Title to menu.** With `tools/title.txt`, mGBA goes title, menu, Nell's
-  "Welcome to Advance Wars!"; the recompiled build returns to the attract loop.
-  Memory matches mGBA at frame 615 except the title's actor state machines
-  (IWRAM `0x03000ED0`...), whose handlers share epilogues with their wrapper
-  (`0x0801B888`). Start from `tools/oracle` dumps around the Start press.
-- **Field Training and a full battle**, then the campaign.
+- **Play Field Training out**: move units, attack, win; script it in
+  `tools/` and compare with mGBA at each turn.
+- **Campaign and save/load** through the in-game menus.
+- **RAM overlays in the toolkit**, which would retire the two m4a entries in
+  `entries.txt` and run the sound mixer natively.
 - **Audio**, once the toolkit has a mixer.
-- **Rendering**: blend fades (BLDCNT/BLDY), windows and the affine layers in the
-  intro and title, from the toolkit's PPU work.
+- **Rendering**: windows (the screen-transition wipes), affine sprites, from the
+  toolkit's PPU work.
 - **netlab recipe** (`projects/advancewars.env`) so builds and QA run on the
   farm, with `SHIP=lan`.
 - **CI**: build the toolkit and this repo's scripts on push; conformance

@@ -11,18 +11,20 @@ never committed, and every build runs headless.
 
 ## Status
 
-**Alpha. Not playable yet.**
+**Alpha.** The game runs through the menus into Field Training's first
+battle; full play of a mission hasn't been checked yet, and there's no audio.
 
 | Milestone | State |
 |---|---|
-| Recompiles and builds | Yes: 7381 functions, all ROM code native, about a minute to compile |
-| Boots, loads the save (Flash) | Yes |
+| Recompiles and builds | Yes: 7384 functions, all ROM code native, about a minute to compile |
+| Boots, loads and writes the save (Flash) | Yes |
 | Attract intro | Plays in full: map, CO cut-ins, battle scenes, logo |
-| Title screen | Reached; EWRAM, palette, VRAM and OAM match mGBA byte for byte (frame 615) |
-| Menus, Field Training, campaign | No: after Start the title's actors take a different path and the game returns to the attract loop |
-| Audio | No (the toolkit has no mixer yet) |
-| Blend, window and affine effects | No (PPU work in the toolkit) |
-| Conformance (lockstep validation) | 154/158 functions agree; the 4 failures are known interpreter limitations |
+| Title screen | Yes, with logo and PRESS START |
+| Menus, name entry, Nell's tutorial | Yes, screen for screen with mGBA (`tools/field_training.txt`) |
+| Field Training battle | The map, units, HUD and cursor come up and the tutorial runs; playing it out is next |
+| Sound driver (m4a) | Runs (music state advances as on hardware); no audio output yet |
+| Graphics | Per-scanline rendering, priorities, alpha/brightness effects, affine BGs; missing windows (transition wipes), mosaic, affine sprites |
+| Conformance (lockstep validation) | 151/151 functions agree |
 
 An earlier version of this repo (March 2026) ran a hybrid: libmgba executed the
 CPU and recompiled functions were swapped in from its run loop. It reached the
@@ -32,6 +34,8 @@ has been retired. See [CHANGELOG.md](CHANGELOG.md).
 ## Screenshots
 
 From the recompiled build, captured with `--headless --screenshot`:
+
+![Title screen, Nell's welcome, the Field Training briefing and the first battle map](docs/screenshots/menus.png)
 
 ![Intro map, Max's cut-in, the battle scene and the ADVANCE logo](docs/screenshots/intro.png)
 
@@ -94,7 +98,7 @@ toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbareco
 ```
 build\b\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
 build\b\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
-build\b\Release\AWRE.exe game\aw.gba --headless --input tools\title.txt --frames 1200
+build\b\Release\AWRE.exe game\aw.gba --headless --input tools\field_training.txt --frames 8000 --screenshot battle.bmp
 ```
 
 Conformance (needs the ROM; prints a SKIP line without it):
@@ -102,7 +106,7 @@ Conformance (needs the ROM; prints a SKIP line without it):
 ```
 py -3 ext\gbarecomp\tools\conformance.py --exe build\b\Release\AWRE.exe --rom game\aw.gba ^
    --baseline conformance_baseline.txt --input tools\title.txt --frames 760
-conformance: 154/158 functions agree (details: scratch\conformance.log)
+conformance: 151/151 functions agree (details: scratch\conformance.log)
 ```
 
 ## Building from source

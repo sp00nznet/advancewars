@@ -6,6 +6,17 @@ versions follow SemVer once the first one is tagged.
 ## [Unreleased]
 
 ### Added
+- `tools/field_training.txt`: button script from the intro through name entry
+  and Nell's tutorial into the first Field Training battle.
+- Two entry points in `entries.txt` that only m4a's RAM mixer calls.
+
+### Changed
+- With gbarecomp#5 and #6 (sound driver, shared switch blocks, scanline
+  renderer) the game gets past the title: menus, name entry, the tutorial
+  and the first battle map, matching mGBA screen for screen.
+- Conformance baseline `151 151` (the harness now counts failures).
+
+### Added
 - `Setup.cmd` quick start and `build.cmd`: tool checks, toolkit fetch, ROM
   discovery and verification, build, launcher.
 - gbarecomp as a submodule at `ext/gbarecomp` (needs gbarecomp#1, #3, #4: license, Flash
