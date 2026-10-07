@@ -78,11 +78,11 @@ bundles it.
    ```
    build.cmd
    ```
-   It ends with `Built build\b\Release\AWRE.exe`. The generated C is in
-   `build\gen` and stays on your machine.
+   It ends with `Built build\Release\AWRE.exe`. The generated C is in
+   `gen\` and stays on your machine.
 5. Run:
    ```
-   build\b\Release\AWRE.exe game\aw.gba
+   build\Release\AWRE.exe game\aw.gba
    ```
    Keys: arrows, Z = A, X = B, Enter = Start, Backspace = Select, A/S = L/R.
 
@@ -96,15 +96,15 @@ Headless runs (no window; work over RDP), recordings and screenshots use the
 toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbarecomp/blob/main/docs/headless.md)):
 
 ```
-build\b\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
-build\b\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
-build\b\Release\AWRE.exe game\aw.gba --headless --input tools\field_training.txt --frames 8000 --screenshot battle.bmp
+build\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
+build\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
+build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training.txt --frames 8000 --screenshot battle.bmp
 ```
 
 Conformance (needs the ROM; prints a SKIP line without it):
 
 ```
-py -3 ext\gbarecomp\tools\conformance.py --exe build\b\Release\AWRE.exe --rom game\aw.gba ^
+py -3 ext\gbarecomp\tools\conformance.py --exe build\Release\AWRE.exe --rom game\aw.gba ^
    --baseline conformance_baseline.txt --input tools\title.txt --frames 760
 conformance: 151/151 functions agree (details: scratch\conformance.log)
 ```
@@ -125,7 +125,7 @@ the save format and the addresses that matter are in
 ## Legal
 
 No game data is included or distributed: you supply your own ROM, and the C
-generated from it stays in the gitignored `build/` directory on your machine.
+generated from it stays in the gitignored `gen/` directory on your machine.
 
 ## License
 

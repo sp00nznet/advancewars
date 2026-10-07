@@ -6,10 +6,11 @@
 game/aw.gba ──> ext/gbarecomp: gbarecomp translate --multi --entries entries.txt
                      │
                      ▼
-               build/gen/   7381 recompiled functions as C, game_entry.c (dispatch
+               gen/   7384 recompiled functions as C, game_entry.c (dispatch
                      │      table, main), plus the toolkit runtime copied in
                      ▼
-               build/b/Release/AWRE.exe   (MSVC, SDL2 for the window)
+               build/Release/AWRE.exe   (CMakeLists.txt here builds gen/; SDL2 for
+                                         the window, headless-only without it)
 ```
 
 - **This repo** owns what is specific to Advance Wars: `entries.txt` (callback
@@ -19,7 +20,8 @@ game/aw.gba ──> ext/gbarecomp: gbarecomp translate --multi --entries entries
   `ext/gbarecomp`) owns everything general: analysis, translation, the runtime
   (memory map, timers, DMA, interrupts, BIOS calls, PPU, Flash save), the
   headless flags, the validator and the mGBA reference runner.
-- **build/** is generated from your ROM on your machine and never committed.
+- **gen/** (the C) and **build/** are made from your ROM on your machine and
+  never committed.
 
 The executable runs the recompiled C directly. Code the game copies into RAM
 (its interrupt handler, the m4a sound mixer, the Flash routines) runs in the

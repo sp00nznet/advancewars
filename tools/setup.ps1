@@ -93,7 +93,7 @@ else {
   # A plain download (no .git, so no submodule): clone the toolkit and check
   # out the commit the submodule pins. Keep $ToolkitRef equal to that pin
   # (git -C ext\gbarecomp rev-parse HEAD) whenever the submodule moves.
-  $ToolkitRef = '4408d4b9bf67f41ea358db961972c45378a57b26'
+  $ToolkitRef = '5f587f505ff0b607d6311c3025f6b02db63c9b3b'
   Run "Cloning gbarecomp" @('git', 'clone', 'https://github.com/sp00nznet/gbarecomp', 'ext\gbarecomp')
   Run "Checking out the pinned toolkit" @('git', '-C', 'ext\gbarecomp', 'checkout', '-q', $ToolkitRef)
 }
@@ -134,14 +134,14 @@ else {
 }
 
 # ---------------------------------------------------------------- build
-Step 4 "Building build\b\Release\AWRE.exe (a few minutes)"
-if ((Test-Path 'build\b\Release\AWRE.exe') -and -not $Force) { Say "  Already built (skipping; -Force rebuilds)." }
+Step 4 "Building build\Release\AWRE.exe (a few minutes)"
+if ((Test-Path 'build\Release\AWRE.exe') -and -not $Force) { Say "  Already built (skipping; -Force rebuilds)." }
 else { Run "Building" @('cmd', '/c', (Join-Path $Root 'build.cmd')) }
 
 # ---------------------------------------------------------------- launcher
 Step 5 "Making the launcher"
 $launcher = Join-Path $Root 'Advance Wars (recomp).cmd'
-Set-Content -Path $launcher -Encoding ASCII -Value "@start `"`" `"%~dp0build\b\Release\AWRE.exe`" `"%~dp0game\aw.gba`""
+Set-Content -Path $launcher -Encoding ASCII -Value "@start `"`" `"%~dp0build\Release\AWRE.exe`" `"%~dp0game\aw.gba`""
 Say "  Double-click 'Advance Wars (recomp).cmd' to play." 'Green'
 Say "  Keys: arrows, Z = A, X = B, Enter = Start, Backspace = Select, A/S = L/R."
 Read-Host "Press Enter to close" | Out-Null

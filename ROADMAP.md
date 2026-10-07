@@ -10,8 +10,6 @@
 - **Audio**, once the toolkit has a mixer.
 - **Rendering**: windows (the screen-transition wipes), affine sprites, from the
   toolkit's PPU work.
-- **netlab recipe** (`projects/advancewars.env`) so builds and QA run on the
-  farm, with `SHIP=lan`.
 - **CI**: build the toolkit and this repo's scripts on push; conformance
   reports SKIP there (no ROM).
 

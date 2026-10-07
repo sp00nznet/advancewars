@@ -10,7 +10,13 @@ versions follow SemVer once the first one is tagged.
   and Nell's tutorial into the first Field Training battle.
 - Two entry points in `entries.txt` that only m4a's RAM mixer calls.
 
+- Root `CMakeLists.txt` and `tools/qa.cmd`; the generated C moves from
+  `build/gen` to `gen/` so a build farm can build the checkout. recomp-netlab
+  recipe `advancewars`: builds on the clang-cl builder in about 20 s
+  (headless-only, gbarecomp#7), QA passes here and reports SKIP on the test VM.
+
 ### Changed
+- `build.cmd` writes `gen/` and builds `build/Release/AWRE.exe`.
 - With gbarecomp#5 and #6 (sound driver, shared switch blocks, scanline
   renderer) the game gets past the title: menus, name entry, the tutorial
   and the first battle map, matching mGBA screen for screen.
