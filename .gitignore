@@ -40,3 +40,6 @@ imgui.ini
 game/
 setup.log
 Advance Wars (recomp).cmd
+
+# netlab drops (builds made on the farm)
+build-farm/
