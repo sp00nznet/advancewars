@@ -6,6 +6,12 @@ versions follow SemVer once the first one is tagged.
 ## [Unreleased]
 
 ### Added
+- `tools/field_training_m2.txt`: Field Training's first two missions. The
+  second (against Olaf) runs three days: Day 1's four attacks, Olaf's AI
+  turns, Day 2's attacks, Day 3's save tutorial and the finish, then Victory
+  (rank A) and the third mission's briefing, in step with mGBA. A presses
+  are placed off text-box edges with mgba_oracle's flag watch
+  (gbarecomp#26). `docs/screenshots/field_training_m2.png`.
 - `tools/field_training_win.txt`: plays Field Training to the win. Day 1
   moves, Olaf's turns, Day 2's two attacks (one destroys an infantry), and
   Day 3's finish, then Victory, the results screen (rank A), the save and
@@ -21,6 +27,12 @@ versions follow SemVer once the first one is tagged.
   (headless-only, gbarecomp#7), QA passes here and reports SKIP on the test VM.
 
 ### Changed
+- gbarecomp pinned at main after #25-#27. #27 fixes the hang in the second
+  mission's first enemy turn: the AI calls newlib's `setjmp`, whose
+  conditional `MOVEQ pc, lr` return never returned, and its `longjmp` then
+  unwound out of the game. #25 times VRAM waits and `CpuFastSet` as mGBA
+  does; #26 adds the oracle's flag watch used to place the script's presses.
+  Conformance stays at 165/165.
 - gbarecomp pinned at main after #21-#23: timing follows mGBA's cycle model
   (#21), and flash takes time to program (#22). The build used to run 14
   frames fast at boot and 44 ahead by the end of Field Training; now boot

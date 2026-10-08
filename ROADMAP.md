@@ -3,15 +3,17 @@
 ## Next
 
 - **Campaign and save/load**: script the next missions on from
-  `tools/field_training_win.txt`, and load the save it writes.
+  `tools/field_training_m2.txt`, and load the save it writes.
 - **RAM overlays in the toolkit**, which would retire the two m4a entries in
   `entries.txt` and run the sound mixer natively.
 - **Audio**, once the toolkit has a mixer.
 - **Rendering**: mosaic, from the toolkit's PPU work.
 - **Frame timing**: the toolkit times code as mGBA does (gbarecomp#21,
-  #22). Boot matches mGBA to the frame and Field Training stays within 4
-  frames, but it isn't cycle-exact: script presses must stay clear of the
-  frames where a text box opens or finishes.
+  #22, #25). Boot matches mGBA to the frame and the first mission stays
+  within 4 frames, but it isn't cycle-exact: by the end of the second
+  mission the build is about 16 frames ahead (a frame or two per battle
+  load and enemy turn). Script presses stay clear of the frames where a
+  text box opens or finishes.
 - **CI**: build the toolkit and this repo's scripts on push; conformance
   reports SKIP there (no ROM).
 

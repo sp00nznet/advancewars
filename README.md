@@ -11,19 +11,20 @@ never committed, and every build runs headless.
 
 ## Status
 
-**Alpha.** The game runs through the menus and plays Field Training to the
-win. Moves, the enemy's turns, every battle, the results screen (rank A) and
-the save all match mGBA turn for turn, and it goes on into the next mission's
-briefing. There's no audio yet.
+**Alpha.** The game runs through the menus and plays Field Training's first
+two missions to the win. Moves, the enemy's turns, every battle, the results
+screens (rank A) and the save all match mGBA turn for turn, and it goes on
+into the third mission's briefing. There's no audio yet.
 
 | Milestone | State |
 |---|---|
-| Recompiles and builds | Yes: 7578 functions, all ROM code native, about a minute to compile |
+| Recompiles and builds | Yes: 7577 functions, all ROM code native, about a minute to compile |
 | Boots, loads and writes the save (Flash) | Yes |
 | Attract intro | Plays in full: map, CO cut-ins, battle scenes, logo |
 | Title screen | Yes, with logo and PRESS START |
 | Menus, name entry, Nell's tutorial | Yes, screen for screen with mGBA (`tools/field_training.txt`) |
-| Field Training | Played to Victory over three days, results screen and save, in step with mGBA (`tools/field_training_win.txt`) |
+| Field Training, mission 1 | Played to Victory over three days, results screen and save, in step with mGBA (`tools/field_training_win.txt`) |
+| Field Training, mission 2 | Played to Victory over three days against Olaf's AI, in step with mGBA (`tools/field_training_m2.txt`) |
 | Sound driver (m4a) | Runs (music state advances as on hardware); no audio output yet |
 | Graphics | Per-scanline rendering, priorities, alpha/brightness effects, affine BGs and sprites, windows; missing mosaic |
 | Conformance (lockstep validation) | 165/165 functions agree |
@@ -42,6 +43,8 @@ From the recompiled build, captured with `--headless --screenshot`:
 ![Field Training: an infantry's move range, the Wait menu, the damage forecast and the battle scene](docs/screenshots/field_training.png)
 
 ![Field Training won: the last battle, "Your mission is a success!", the results screen with rank A, and the next mission's briefing](docs/screenshots/field_training_win.png)
+
+![Field Training's second mission: Nell's "Order this infantry unit to Fire", an infantry battle against Olaf, Victory with rank A, and the third mission's briefing](docs/screenshots/field_training_m2.png)
 
 ![Intro map, Max's cut-in, the battle scene and the ADVANCE logo](docs/screenshots/intro.png)
 
@@ -106,6 +109,7 @@ build\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
 build\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
 build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training.txt --frames 8000 --screenshot map.bmp
 build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training_win.txt --frames 26320 --screenshot victory.bmp
+build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training_m2.txt --frames 53000 --screenshot victory2.bmp
 ```
 
 Conformance (needs the ROM; prints a SKIP line without it):
