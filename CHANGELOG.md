@@ -21,6 +21,14 @@ versions follow SemVer once the first one is tagged.
   (headless-only, gbarecomp#7), QA passes here and reports SKIP on the test VM.
 
 ### Changed
+- gbarecomp pinned at main after #21-#23: timing follows mGBA's cycle model
+  (#21), and flash takes time to program (#22). The build used to run 14
+  frames fast at boot and 44 ahead by the end of Field Training; now boot
+  matches mGBA to the frame and the mission stays within 4 frames.
+  `tools/field_training_win.txt` drops a press that landed as Victory's
+  text box opened (mGBA ate it, the build didn't) and shifts the rest 20
+  frames later. Conformance baseline `165 165`: more functions run in the
+  760-frame window.
 - gbarecomp pinned at main after #17-#19. The results screen fell into the
   wrong code after a block split (gbarecomp#17): bars drawn from garbage,
   then a hang in the RAM sprite builder. Its "Victory!", labels and rank

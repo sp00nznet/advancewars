@@ -26,7 +26,7 @@ briefing. There's no audio yet.
 | Field Training | Played to Victory over three days, results screen and save, in step with mGBA (`tools/field_training_win.txt`) |
 | Sound driver (m4a) | Runs (music state advances as on hardware); no audio output yet |
 | Graphics | Per-scanline rendering, priorities, alpha/brightness effects, affine BGs and sprites, windows; missing mosaic |
-| Conformance (lockstep validation) | 138/138 functions agree |
+| Conformance (lockstep validation) | 165/165 functions agree |
 
 An earlier version of this repo (March 2026) ran a hybrid: libmgba executed the
 CPU and recompiled functions were swapped in from its run loop. It reached the
@@ -105,7 +105,7 @@ toolkit's runtime flags ([docs/headless.md](https://github.com/sp00nznet/gbareco
 build\Release\AWRE.exe game\aw.gba --headless --frames 600 --screenshot f600.bmp
 build\Release\AWRE.exe game\aw.gba --record intro.mp4 --frames 3600
 build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training.txt --frames 8000 --screenshot map.bmp
-build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training_win.txt --frames 26300 --screenshot victory.bmp
+build\Release\AWRE.exe game\aw.gba --headless --input tools\field_training_win.txt --frames 26320 --screenshot victory.bmp
 ```
 
 Conformance (needs the ROM; prints a SKIP line without it):

@@ -8,10 +8,10 @@
   `entries.txt` and run the sound mixer natively.
 - **Audio**, once the toolkit has a mixer.
 - **Rendering**: mosaic, from the toolkit's PPU work.
-- **Frame timing**: cycle counts are approximate, so the build runs a frame
-  or two behind mGBA in places, and about 60 frames ahead after heavy code
-  such as the end of Field Training's last battle. Game state stays in step;
-  scripts with a press every 90 frames still line up.
+- **Frame timing**: the toolkit times code as mGBA does (gbarecomp#21,
+  #22). Boot matches mGBA to the frame and Field Training stays within 4
+  frames, but it isn't cycle-exact: script presses must stay clear of the
+  frames where a text box opens or finishes.
 - **CI**: build the toolkit and this repo's scripts on push; conformance
   reports SKIP there (no ROM).
 
