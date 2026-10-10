@@ -117,7 +117,7 @@ Conformance (needs the ROM; prints a SKIP line without it):
 ```
 py -3 ext\gbarecomp\tools\conformance.py --exe build\Release\AWRE.exe --rom game\aw.gba ^
    --baseline conformance_baseline.txt --input tools\title.txt --frames 760
-conformance: 151/151 functions agree (details: scratch\conformance.log)
+conformance: 165/165 functions agree (details: scratch\conformance.log)
 ```
 
 ## Building from source
